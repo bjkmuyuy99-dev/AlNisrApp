@@ -1,0 +1,28 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y openjdk-17-jdk git zip unzip python3-pip
+          pip3 install buildozer
+      
+      - name: Build APK
+        run: |
+          buildozer android debug
+      
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: AlNisr-APK
+          path: bin/*.apk
