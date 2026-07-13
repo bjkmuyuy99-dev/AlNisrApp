@@ -19,11 +19,11 @@ jobs:
       
       - name: Build APK
         run: |
-          # نحدد SDK و NDK يدوياً
-          export ANDROIDSDK=/usr/local/lib/android/sdk
-          export ANDROIDNDK=/usr/local/lib/android/sdk/ndk/27.3.13750724
-          export ANDROIDAPI=33
-          export ANDROIDMINAPI=21
+          # نستخدم SDK الموجود في GitHub Actions مباشرة
+          export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+          export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/27.3.13750724
+          export ANDROID_API=33
+          export ANDROID_MIN_API=21
           buildozer android debug
       
       - name: Upload APK
