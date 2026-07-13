@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
       
       - name: Install dependencies
         run: |
@@ -19,6 +19,11 @@ jobs:
       
       - name: Build APK
         run: |
+          # نحدد SDK و NDK يدوياً
+          export ANDROIDSDK=/usr/local/lib/android/sdk
+          export ANDROIDNDK=/usr/local/lib/android/sdk/ndk/27.3.13750724
+          export ANDROIDAPI=33
+          export ANDROIDMINAPI=21
           buildozer android debug
       
       - name: Upload APK
